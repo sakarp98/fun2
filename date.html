@@ -1,0 +1,130 @@
+a<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Valentine's Date 💌</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+         min-height: 100vh;
+         display: flex;
+         justify-content: center;
+         align-items: center;
+         font-family: "Poppins", sans-serif;
+         color: #fff;
+         margin: 0;
+         overflow: hidden;
+
+         /* Romantic pastel gradient */
+         background: linear-gradient(135deg, #ff9a9e, #fad0c4, #fbc2eb, #a18cd1);
+         background-size: 400% 400%;
+         animation: gradientBG 12s ease infinite;
+         text-align: center;
+       }
+
+       /* Smooth animated gradient */
+       @keyframes gradientBG {
+         0% { background-position: 0% 50%; }
+         50% { background-position: 100% 50%; }
+         100% { background-position: 0% 50%; }
+       }
+
+
+         @keyframes gradientBG {
+           0% { background-position: 0% 50%; }
+           50% { background-position: 100% 50%; }
+           100% { background-position: 0% 50%; }
+         }
+
+         h1 {
+           font-size:3rem;
+           margin-bottom:20px;
+           animation: popGlow 1s ease forwards;
+           text-shadow: 0 0 5px #fff, 0 0 10px #ff4d6d, 0 0 20px #ff4d6d, 0 0 30px #ff758f;
+         }
+
+         p {
+           font-size:1.6rem;
+           animation: popGlow 1.2s ease forwards;
+           text-shadow: 0 0 3px #fff, 0 0 8px #fbc2eb;
+         }
+
+         @keyframes popGlow {
+           0% { transform: scale(0); opacity:0; }
+           60% { transform: scale(1.1); opacity:1; }
+           100% { transform: scale(1); }
+         }
+
+         .floating-emoji {
+           position:absolute;
+           font-size:32px;
+           pointer-events:none;
+           animation: floatUp 3s ease forwards;
+         }
+
+         @keyframes floatUp {
+           0% { transform: translateY(0) scale(1); opacity:1; }
+           100% { transform: translateY(-180px) scale(1.4); opacity:0; }
+         }
+    </style>
+</head>
+
+<body>
+<div>
+    <h1>🎉 YAY 💕 Sita! 🎉 </h1>
+    <p>We already had a date in Vegas! 🌹💖</p>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+<script>
+    // Firework bursts / confetti
+    function launchFirework() {
+      const colors = ['#ff4d6d','#ff758f','#fbc2eb','#ffd6f0','#ffb3c6'];
+      confetti({
+        particleCount: 40 + Math.random()*20,
+        spread: 120,
+        startVelocity: 60,
+        gravity: 0.8,
+        origin: { x: Math.random(), y: Math.random()*0.5 + 0.3 },
+        colors: colors,
+        ticks: 80
+      });
+    }
+    setInterval(launchFirework, 1000);
+
+    // Floating emojis
+    const emojis = ['❤️','💖','💫','✨','🌹','💌','🎉'];
+    function createFloatingEmoji() {
+      const e = document.createElement('div');
+      e.className = 'floating-emoji';
+      e.innerText = emojis[Math.floor(Math.random()*emojis.length)];
+      e.style.left = Math.random() * window.innerWidth + 'px';
+      e.style.fontSize = (20 + Math.random()*24) + 'px';
+      e.style.animationDuration = (2 + Math.random()*2) + 's';
+      document.body.appendChild(e);
+      setTimeout(()=>e.remove(), 4000);
+    }
+    setInterval(createFloatingEmoji, 400);
+
+    // Center emoji explosion once after page load
+    window.onload = () => {
+      const centerX = window.innerWidth/2;
+      const centerY = window.innerHeight/2;
+      for(let i=0;i<10;i++){
+        const e = document.createElement('div');
+        e.className = 'floating-emoji';
+        e.innerText = emojis[Math.floor(Math.random()*emojis.length)];
+        e.style.left = centerX + (Math.random()*100 -50) + 'px';
+        e.style.top = centerY + (Math.random()*50 -25) + 'px';
+        e.style.fontSize = (30 + Math.random()*20) + 'px';
+        e.style.animationDuration = (2 + Math.random()*2) + 's';
+        document.body.appendChild(e);
+        setTimeout(()=>e.remove(), 4000);
+      }
+    }
+</script>
+</body>
+</html>
